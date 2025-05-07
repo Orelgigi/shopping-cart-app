@@ -87,17 +87,6 @@ export class CartService {
   }
 
    saveCart(user: User): void {
-    const users = this.userService.getUsers();
-
-    const updatedUsers = users.map(u =>
-      u.email === user.email ? {
-        ...u,
-        cart: new BehaviorSubject<CartItem[]>(user.cart.value), // refresh cart
-        isLoggedIn: u.isLoggedIn
-      } : u
-    );
-
-    // save using internal userService method
-    (this.userService as any).saveUsers(updatedUsers);
+    this.userService.updateUserCart(user);
   }
 }

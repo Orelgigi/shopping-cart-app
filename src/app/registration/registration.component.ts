@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } 
 import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../services/user.service';
 
-
 @Component({
   selector: 'app-registration',
   standalone: true,
