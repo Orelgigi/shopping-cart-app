@@ -1,0 +1,69 @@
+<div class="registration-container">
+     <h2>Registration</h2>
+  
+    <form *ngIf="registrationForm" [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class="registration-form">
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input 
+          type="email" 
+          id="email" 
+          formControlName="email" 
+          class="form-control"
+          [ngClass]="{'is-invalid': email?.invalid && email?.touched}"
+        >
+        <div class="error-message" *ngIf="email?.invalid && email?.touched">
+          <div *ngIf="email?.errors?.['required']">Email is required</div>
+          <div *ngIf="email?.errors?.['email']">Please enter a valid email</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input 
+          type="password" 
+          id="password" 
+          formControlName="password" 
+          class="form-control"
+          [ngClass]="{'is-invalid': password?.invalid && password?.touched}"
+        >
+        <div class="error-message" *ngIf="password?.invalid && password?.touched">
+          <div *ngIf="password?.errors?.['required']">Password is required</div>
+          <div *ngIf="password?.errors?.['minlength']">Password must be at least 6 characters</div>
+          <div *ngIf="password?.errors?.['pattern']">Password must contain at least one capital letter</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="confirmPassword">Confirm Password:</label>
+        <input 
+          type="password" 
+          id="confirmPassword" 
+          formControlName="confirmPassword" 
+          class="form-control"
+          [ngClass]="{'is-invalid': registrationForm.errors?.['passwordMismatch'] && confirmPassword?.touched}"
+        />
+        <div class="error-message" *ngIf="confirmPassword?.invalid && confirmPassword?.touched">
+          <div *ngIf="confirmPassword?.errors?.['required']">Please confirm your password</div>
+        </div>
+        <div class="error-message" *ngIf="registrationForm.errors?.['passwordMismatch'] && confirmPassword?.touched">
+          Passwords do not match
+        </div>
+      </div>
+
+      <div class="error-message" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+
+      <button 
+        type="submit" 
+        [disabled]="!registrationForm || registrationForm.invalid"
+        class="submit-button"
+      >
+        Register
+      </button>
+      
+    </form>
+    <div class="login-link">
+      Already have an account? <a [routerLink]="['/login']">login here</a>
+    </div>
+</div>

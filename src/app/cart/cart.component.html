@@ -1,0 +1,21 @@
+<div class="product-list-header">
+    <span class="product-count">{{ totalItems }} PRODUCT FOUND</span>
+</div>
+<div class="product-grid">
+  <div class="product-card" *ngFor="let product of cartItemsAll">
+    <div class="product-image">
+      <img [src]="product.product.image" [alt]="product.product.name"  alt="product image" [title]="product.product.name" />
+    </div>
+    <div class="product-name">{{ product.product.name }}</div>
+
+    <div class="product-actions">
+      <button class="remove-btn" (click)="removeToCart(product.product)">-</button>
+      <span class="quantity">{{ product.quantity }}</span>
+      <button class="add-btn" (click)="addToCart(product.product)">+</button>
+  
+    </div>
+          <div class="product-price">{{product.quantity}} * ${{ (product.product.price).toFixed(2) }} = ${{ (product.product.price * product.quantity).toFixed(2) }}</div>
+
+  </div>
+  <span class="product-sum">sum of cart: ${{ totalPrice }}</span>
+</div>

@@ -1,0 +1,15 @@
+<div class="product-list-header">
+  <span class="product-count">{{ products.length }} PRODUCT FOUND</span>
+</div>
+<div class="product-grid">
+  <div class="product-card" *ngFor="let product of products">
+    <div class="product-image">
+      <img [src]="product.image" [alt]="product.name"  alt="product image" [title]="product.name" />
+    </div>
+    <div class="product-name">{{ product.name }}</div>
+    <div class="product-actions">
+      <button class="add-btn" (click)="addToCart(product)">Add</button>
+      <span class="product-price">${{ product.price.toFixed(2) }}</span>
+    </div>
+  </div>
+</div>
